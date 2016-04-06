@@ -75,6 +75,7 @@ public class Translator {
     public Instruction getInstruction(String label) {
         int s1; // Possible operands of the instruction
         int s2;
+        String s3;
         int r;
         int x;
 
@@ -110,6 +111,10 @@ public class Translator {
                 s1 = scanInt();
                 s2 = scanInt();
                 return new DivInstruction(label, r, s1, s2);
+            case "bnz":
+                r = scanInt();
+                s3 = scan();
+                return new BnzInstruction(label, r, s3);
         }
 
         // You will have to write code here for the other instructions.
