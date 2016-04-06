@@ -101,7 +101,7 @@ public class Translator {
         List<Class> paramTypes = new ArrayList<>();
 
         //The first constructor param is always the label string
-        wordList.add(ins);
+        wordList.add(label);
         paramTypes.add(String.class);
 
         String nextWord;
