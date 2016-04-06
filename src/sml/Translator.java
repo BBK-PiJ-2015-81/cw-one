@@ -93,7 +93,6 @@ public class Translator {
         // Generate the instruction classname that corresponds with the label
         String instructionName = ins.substring(0, 1).toUpperCase() + ins.substring(1).toLowerCase() + "Instruction" ;
 
-
         //System.out.println("The scanned label is: " + ins);
         //System.out.println("Use instruction class: " + instructionName);
 
@@ -114,22 +113,14 @@ public class Translator {
         }
         */
 
-
         while (!(nextWord = scan()).equals("")){
             wordList.add(nextWord);
         }
-
-
-
-
-
 
         //System.out.println("The next word is: " + instructionName);
 
         Object wordArray [] = wordList.toArray();
         Class<?> paramArray [] = new Class<?> [wordArray.length];
-
-
 
          try {
              for (int i = 0; i < wordArray.length; i++){
@@ -144,9 +135,6 @@ public class Translator {
                  }
              }
 
-
-
-
              //System.out.println("My word array contains: " + Arrays.asList(wordArray));
              //System.out.println("My parameter array contains: " + Arrays.asList(paramArray));
              //System.out.println("Instruction name is: " + instructionName);
@@ -156,30 +144,27 @@ public class Translator {
 
              //System.out.println("My reflection is: " + reflectionClass);
 
-
              Constructor con = reflectionClass.getConstructor(paramArray);
-
 
              // Cast return back to an Instruction
             return ((Instruction)con.newInstance(wordArray));
 
-        } catch (ClassNotFoundException e) {
-            //e.printStackTrace();
-             System.err.println("Error");
-        } catch (NoSuchMethodException e) {
-            //e.printStackTrace();
-             System.err.println("Error");
-        } catch (InvocationTargetException e) {
-             //e.printStackTrace();
-             System.err.println("Error");
-        } catch (InstantiationException e) {
-             //e.printStackTrace();
-             System.err.println("Error");
-        } catch (IllegalAccessException e) {
-             //e.printStackTrace();
-             System.err.println("Error");
-        }
-
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+                 System.err.println("Error");
+            } catch (NoSuchMethodException e) {
+                //e.printStackTrace();
+                 System.err.println("Error");
+            } catch (InvocationTargetException e) {
+                 //e.printStackTrace();
+                 System.err.println("Error");
+            } catch (InstantiationException e) {
+                 //e.printStackTrace();
+                 System.err.println("Error");
+            } catch (IllegalAccessException e) {
+                 //e.printStackTrace();
+                 System.err.println("Error");
+            }
 
 /*
         // Commented out switch statement
