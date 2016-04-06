@@ -33,7 +33,8 @@ public class Machine {
     }
 
     public static void main(String[] args) {
-
+        //String curDir = System.getProperty("user.dir");
+        //System.out.println(curDir);
         if (args.length != 1) {
             System.err.println("Incorrect number of arguments - Machine <file> - required");
             System.exit(-1);
