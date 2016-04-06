@@ -2,9 +2,14 @@ package sml;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
@@ -88,14 +93,97 @@ public class Translator {
         // Generate the instruction classname that corresponds with the label
         String instructionName = ins.substring(0, 1).toUpperCase() + ins.substring(1).toLowerCase() + "Instruction" ;
 
-        System.out.println("The scanned label is: " + ins);
-        System.out.println("Use instruction class: " + instructionName);
 
-        
+        //System.out.println("The scanned label is: " + ins);
+        //System.out.println("Use instruction class: " + instructionName);
 
+        // Make a list of the remaining words
+        List<String> wordList = new ArrayList<>();
+        List<Class> paramTypes = new ArrayList<>();
 
-        // Commented out switch statement
+        //The first constructor param is always the label string
+        wordList.add(ins);
+        paramTypes.add(String.class);
+
+        String nextWord;
+
         /*
+        if (!nextWord.equals("")){
+            wordList.add(nextWord);
+            paramTypes.add(nextWord.getClass());
+        }
+        */
+
+
+        while (!(nextWord = scan()).equals("")){
+            wordList.add(nextWord);
+        }
+
+
+
+
+
+
+        //System.out.println("The next word is: " + instructionName);
+
+        Object wordArray [] = wordList.toArray();
+        Class<?> paramArray [] = new Class<?> [wordArray.length];
+
+
+
+         try {
+             for (int i = 0; i < wordArray.length; i++){
+                 String str = wordArray[i].toString();
+
+                 if (Pattern.matches(("-?[0-9]+"), str)){
+                     paramArray [i] = Integer.TYPE;
+                     wordArray [i] =  Integer.parseInt((String) wordArray[i]);
+                 } else {
+                     paramArray [i] = String.class;
+
+                 }
+             }
+
+
+
+
+             //System.out.println("My word array contains: " + Arrays.asList(wordArray));
+             //System.out.println("My parameter array contains: " + Arrays.asList(paramArray));
+             //System.out.println("Instruction name is: " + instructionName);
+
+             //Reflect class
+             Class reflectionClass = Class.forName("sml." + instructionName);
+
+             //System.out.println("My reflection is: " + reflectionClass);
+
+
+             Constructor con = reflectionClass.getConstructor(paramArray);
+
+
+             // Cast return back to an Instruction
+            return ((Instruction)con.newInstance(wordArray));
+
+        } catch (ClassNotFoundException e) {
+            //e.printStackTrace();
+             System.err.println("Error");
+        } catch (NoSuchMethodException e) {
+            //e.printStackTrace();
+             System.err.println("Error");
+        } catch (InvocationTargetException e) {
+             //e.printStackTrace();
+             System.err.println("Error");
+        } catch (InstantiationException e) {
+             //e.printStackTrace();
+             System.err.println("Error");
+        } catch (IllegalAccessException e) {
+             //e.printStackTrace();
+             System.err.println("Error");
+        }
+
+
+/*
+        // Commented out switch statement
+
         switch (ins) {
             case "add":
                 r = scanInt();
@@ -131,7 +219,7 @@ public class Translator {
         }
 
         // You will have to write code here for the other instructions.
-        */
+*/
 
         return null;
     }
