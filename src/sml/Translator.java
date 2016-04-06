@@ -82,7 +82,20 @@ public class Translator {
         if (line.equals(""))
             return null;
 
+        //Get the first word as a string
         String ins = scan();
+
+        // Generate the instruction classname that corresponds with the label
+        String instructionName = ins.substring(0, 1).toUpperCase() + ins.substring(1).toLowerCase() + "Instruction" ;
+
+        System.out.println("The scanned label is: " + ins);
+        System.out.println("Use instruction class: " + instructionName);
+
+        
+
+
+        // Commented out switch statement
+        /*
         switch (ins) {
             case "add":
                 r = scanInt();
@@ -118,6 +131,7 @@ public class Translator {
         }
 
         // You will have to write code here for the other instructions.
+        */
 
         return null;
     }
