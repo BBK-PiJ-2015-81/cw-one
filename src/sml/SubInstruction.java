@@ -1,9 +1,7 @@
 package sml;
 
 /**
- * This class ....
- *
- * @author someone
+ * Created by andre on 06/04/2016.
  */
 
 public class SubInstruction extends Instruction {

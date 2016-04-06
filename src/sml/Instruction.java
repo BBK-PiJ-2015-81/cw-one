@@ -1,9 +1,7 @@
 package sml;
 
 /**
- * This class is the superclass of the classes for machine instructions
- *
- * @author someone
+ * Created by andre on 06/04/2016.
  */
 
 public abstract class Instruction {

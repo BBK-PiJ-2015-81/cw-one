@@ -1,9 +1,7 @@
 package sml;
 
 /**
- * This class ....
- *
- * @author someone
+ * Created by andre on 06/04/2016.
  */
 
 public class BnzInstruction extends Instruction {
@@ -30,12 +28,10 @@ public class BnzInstruction extends Instruction {
 		if (value1 != 0) {
             m.setPc(value2);
 		}
-		
-
     }
 
     @Override
     public String toString() {
-        return super.toString() + " " + op1 + " / " + op2 + " goto " + result;
+        return super.toString() + " " + op1 + " goto " + op2;
     }
 }

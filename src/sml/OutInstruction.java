@@ -3,6 +3,7 @@ package sml;
 /**
  * Created by andre on 06/04/2016.
  */
+
 public class OutInstruction extends Instruction {
 
     private int op;
