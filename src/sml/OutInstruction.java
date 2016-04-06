@@ -18,9 +18,9 @@ public class OutInstruction extends Instruction {
 
     @Override
     public void execute(Machine m) {
-        System.out.println();
+        //System.out.println();
         System.out.println("The contents of register " + op + " is " + m.getRegisters().getRegister(op));
-        System.out.println();
+        //System.out.println();
     }
 
     public String toString() {
